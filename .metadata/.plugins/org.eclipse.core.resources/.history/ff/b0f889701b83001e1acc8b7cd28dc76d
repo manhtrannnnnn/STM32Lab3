@@ -1,0 +1,17 @@
+/*
+ * display.c
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+
+#include "display.h"
+
+uint16_t SEG[numEn] = {EN0_Pin, EN1_Pin, EN2_PIN, EN3_Pin};
+
+int segBuffer[numEn] = {0};
+
+void updateTime(){
+
+}

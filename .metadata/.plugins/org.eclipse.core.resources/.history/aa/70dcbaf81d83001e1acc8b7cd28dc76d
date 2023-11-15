@@ -1,0 +1,79 @@
+/*
+ * display.c
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+
+#include "display.h"
+uint16_t SEG[numEn] = {EN0_Pin, EN1_Pin, EN2_Pin, EN3_Pin};
+
+int segBuffer[numEn] = {0};
+
+void updateClockBuffer(){
+	segBuffer[0] = timeRoad1 / 10;
+	segBuffer[1] = timeRoad1 % 10;
+	segBuffer[2] = timeRoad2 / 10;
+	segBuffer[3] = timeRoad2 % 10;
+}
+
+void clear7SEG(){
+	HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin |
+			SEG3_Pin | SEG4_Pin | SEG5_Pin | SEG6_Pin, 1);
+}
+void seg7(int num){
+	if(num >= 0 && num < 10){
+		switch (num) {
+			case 0:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin |
+										 SEG3_Pin | SEG4_Pin | SEG5_Pin, 0);
+				break;
+			case 1:
+				HAL_GPIO_WritePin(GPIOB, SEG1_Pin | SEG2_Pin, 0);
+				break;
+			case 2:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG3_Pin |
+										 SEG4_Pin | SEG6_Pin, 0);
+				break;
+			case 3:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin |
+										 SEG3_Pin | SEG6_Pin, 0);
+				break;
+			case 4:
+				HAL_GPIO_WritePin(GPIOB, SEG1_Pin | SEG2_Pin |
+										 SEG5_Pin | SEG6_Pin, 0);
+				break;
+			case 5:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG2_Pin |
+										 SEG3_Pin | SEG5_Pin | SEG6_Pin, 0);
+				break;
+			case 6:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG2_Pin | SEG3_Pin |
+										 SEG4_Pin | SEG5_Pin | SEG6_Pin, 0);
+				break;
+			case 7:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin, 0);
+				break;
+			case 8:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin |
+										 SEG3_Pin | SEG4_Pin | SEG5_Pin | SEG6_Pin, 0);
+				break;
+			case 9:
+				HAL_GPIO_WritePin(GPIOB, SEG0_Pin | SEG1_Pin | SEG2_Pin |
+										 SEG3_Pin | SEG5_Pin | SEG6_Pin, 0);
+				break;
+		}
+	}
+}
+
+void segOn(int index){
+	for(int i = 0; i < numEn; i++){
+		if(i == index) HAL_GPIO_WritePin(GPIOA, SEG[i], RESET);
+		else HAL_GPIO_WritePin(GPIOA, SEG[i], SET);
+	}
+}
+
+void display7Seg(){
+
+}

@@ -1,0 +1,30 @@
+/*
+ * button.h
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+#ifndef INC_BUTTON_H_
+#define INC_BUTTON_H_
+#include "main.h"
+#include "global.h"
+
+
+/* Define -----*/
+#define mode 0
+#define modify 1
+#define set 2
+
+/* Function -----*/
+/* Button reading and debounce */
+//debounce button
+void getKeyInput();
+
+/* Check button is pressed or not
+ * Check button[index]
+ */
+int isButtonPressed(int index);
+
+
+#endif /* INC_BUTTON_H_ */

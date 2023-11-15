@@ -1,0 +1,9 @@
+/*
+ * display.h
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "main.h"
+#include "global.h"

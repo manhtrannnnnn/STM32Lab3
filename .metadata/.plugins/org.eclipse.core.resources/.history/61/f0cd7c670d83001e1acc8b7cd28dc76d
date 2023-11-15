@@ -1,0 +1,14 @@
+/*
+ * fsm_automatic.c
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "fsm_automatic.h"
+#define INIT 0
+#define AUTO_RED 1
+#define AUTO_YELLOW 2
+#define AUTO_GREEN 3
+
+#define CLOCK_TIME 1000

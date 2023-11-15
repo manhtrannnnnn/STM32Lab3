@@ -1,0 +1,29 @@
+/*
+ * software_timer.h
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+#ifndef INC_SOFTWARE_TIMER_H_
+#define INC_SOFTWARE_TIMER_H_
+
+#include "global.h"
+
+#define enTimer 0
+#define road1Timer 1
+#define road2Timer 2
+#define clockTimer1 3
+#define clockTimer2 4
+#define mode1Timer 5
+#define blinkTimer 6
+
+/* Function -----*/
+//Set time on timer[index] = duration
+void setTimer(int duration, int index);
+//Check timer out on timer[index]
+int isTimerOut(int index);
+//Run timer (counter on timer)
+void timerRun(void);
+
+#endif /* INC_SOFTWARE_TIMER_H_ */

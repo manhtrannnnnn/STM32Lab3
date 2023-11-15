@@ -1,0 +1,28 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "fsm_manual.h"
+
+#define MODE1 1
+#define MODE2 2
+#define MODE3 3
+#define MODE4 4
+
+int statusManual = MODE1;
+
+
+void fsm_manual_run(){
+	switch(statusManual){
+		case MODE1:
+			autoRoad1();
+			autoRoad2();
+			if(isButtonPressed(modeButton)){
+				statusManual = MODE2;
+
+			}
+	}
+}

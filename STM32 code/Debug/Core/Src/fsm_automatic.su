@@ -1,0 +1,3 @@
+fsm_automatic.c:22:6:trafficRoad1	8	static
+fsm_automatic.c:63:6:trafficRoad2	8	static
+fsm_automatic.c:105:6:setInit	4	static

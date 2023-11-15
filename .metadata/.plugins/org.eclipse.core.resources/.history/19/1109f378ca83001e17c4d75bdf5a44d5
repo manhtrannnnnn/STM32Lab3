@@ -1,0 +1,18 @@
+/*
+ * display.h
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "main.h"
+#include "global.h"
+
+extern int segBuffer[numEn];
+
+void segOn(int index);//turn on seg
+void updateClockBuffer();//update timerRoad
+void display7Seg(int num);// display 7 seg
+void ledRoad1(int color);
+void ledRoad2(int color);
+void ledOff();

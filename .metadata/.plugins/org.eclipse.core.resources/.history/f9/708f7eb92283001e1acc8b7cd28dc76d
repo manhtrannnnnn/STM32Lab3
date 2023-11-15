@@ -1,0 +1,71 @@
+
+#include "fsm_display.h"
+
+#define INIT 0
+#define EN0	 1
+#define EN1	 2
+#define EN2  3
+#define EN3  4
+
+#define LED_ON 1
+#define LED_OFF 0
+
+#define scanning 250
+#define blinking 500
+
+int statusDisplay7Seg = INIT;
+int statusBlink = INIT;
+
+void fsm_display7Seg(){
+	updateClockBuffer();
+	switch(statusDisplay7Seg){
+		case INIT:
+			statusDisplay7Seg = EN0;
+			setTimer(scanning, enTimer);
+			break;
+		case EN0:
+			segOn(0);
+			display7Seg(segBuffer[0]);
+			if(isTimerEnd(enTimer)){
+				statusDisplay7Seg = EN1;
+				setTimer(scanning, enTimer);
+			}
+			break;
+		case EN1:
+			segOn(1);
+			display7Seg(segBuffer[1]);
+			if(isTimerEnd(enTimer)){
+				statusDisplay7Seg = EN2;
+				setTimer(scanning,enTimer);
+			}
+			break;
+		case EN2:
+			segOn(2);
+			display7Seg(segBuffer[2]);
+			if(isTimerEnd(enTimer)){
+				statusDisplay7Seg = EN3;
+				setTimer(scanning,enTimer);
+			}
+			break;
+		case EN3:
+			segOn(3);
+			display7Seg(segBuffer[3]);
+			if(isTimerEnd(enTimer)){
+				statusDisplay7Seg = EN1;
+				setTimer(scanning,enTimer);
+			}
+			break;
+	}
+}
+
+void blinkLed(int color){
+	switch(statusBlink){
+		case INIT:
+			statusBlink = LED_ON;
+			setTimer(blinking, blinkTimer);
+			break;
+		case LED_ON:
+
+
+	}
+}

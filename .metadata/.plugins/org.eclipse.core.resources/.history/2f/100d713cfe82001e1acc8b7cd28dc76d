@@ -1,0 +1,22 @@
+/*
+ * button.h
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+#include "main.h"
+
+#ifndef INC_BUTTON_H_
+#define INC_BUTTON_H_
+
+
+#define modeButton 0
+#define modifyButton 1
+#define setButton 2
+
+
+int isButtonPressed();
+void getKeyInput();
+
+
+#endif /* INC_BUTTON_H_ */

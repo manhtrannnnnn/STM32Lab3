@@ -1,0 +1,25 @@
+/*
+ * display.h
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "main.h"
+#include "global.h"
+
+extern int segBuffer[4];
+
+/* Function -----*/
+/* LED */
+//Turn on LED have "color"
+void ledRoad1(int color);
+void ledRoad2(int color);
+//Turn off all LED
+void ledOff(void);
+/* EN */
+//turn on EN[index] pin
+void enOn(int index);
+/* LED 7SEG */
+void updateBufferSeg(void);
+void display7SEG(int num);

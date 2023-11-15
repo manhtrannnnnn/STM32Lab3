@@ -1,0 +1,6 @@
+display.c:27:6:ledRoad1	24	static
+display.c:35:6:ledRoad2	24	static
+display.c:44:6:ledOff	16	static
+display.c:49:6:enOn	24	static
+display.c:60:6:updateBufferSeg	4	static
+display.c:67:6:display7SEG	16	static

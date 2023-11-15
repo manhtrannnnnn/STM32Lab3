@@ -1,0 +1,23 @@
+23:31:22 **** Incremental Build of configuration Debug for project STM32 code ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/fsm_manual.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/fsm_manual.d" -MT"Core/Src/fsm_manual.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/fsm_manual.o"
+arm-none-eabi-gcc -o "STM32 code.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\BACH KHOA\Semester 5\Vi Xu Ly\LAB3\STM32 code\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32 code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32 code.elf
+ 
+arm-none-eabi-size   STM32\ code.elf 
+arm-none-eabi-objdump -h -S  STM32\ code.elf  > "STM32 code.list"
+arm-none-eabi-objcopy  -O ihex  STM32\ code.elf  "STM32 code.hex"
+arm-none-eabi-objcopy  -O binary  STM32\ code.elf  "STM32 code.bin"
+   text	   data	    bss	    dec	    hex	filename
+   9648	    164	   1748	  11560	   2d28	STM32 code.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32 code.bin
+Finished building: STM32 code.hex
+ 
+ 
+Finished building: STM32 code.list
+ 
+
+23:31:22 Build Finished. 0 errors, 0 warnings. (took 672ms)
+

@@ -1,0 +1,76 @@
+/*
+ * software_timer.c
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+/*#include "software_timer.h"
+
+
+int counter[numTimer] = {0};
+int timerFlag[numTimer] = {0};
+
+
+void setTimer(int duration, int index){
+	counter[index] = duration / TIMER_CYCLE;
+	timerFlag[index] = 0;
+}
+
+
+void timerRun(){
+	for(int i = 0; i < numTimer; i++){
+		if(counter[i] > 0){
+			counter[i]--;
+			if(counter[i] <= 0){
+				timerFlag[i] = 1;
+				counter[i] = 0;
+			}
+		}
+	}
+}
+int isTimerEnd(int index) {
+	if(timerFlag[index] == 1) {
+		timerFlag[index] = 0;
+		return 1;
+	}
+	return 0;
+}*/
+#include "software_timer.h"
+
+/* Init -----*/
+int counter[NO_Timer] = {0};
+int flag[NO_Timer] = {0};
+
+/* Function -----*/
+//Set time on timer[index] = duration
+void setTimer(int duration, int index) {
+  if(index >= 0 && index < NO_Timer) {
+	  counter[index] = duration / TIMER_CYCLE;
+	  flag[index] = 0;
+  }
+}
+
+//Check timer out on timer[index]
+int isTimerOut(int index) {
+	if(index >= 0 && index < NO_Timer) {
+		if(flag[index] == 1) {
+			flag[index] = 0;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+//Run timer (counter on timer)
+void timerRun(void) {
+  for(int i = 0; i < NO_Timer; i++) {
+	if(counter[i] > 0) {
+	  counter[i]--;
+	  if(counter[i] <= 0) {
+		counter[i] = 0;
+		flag[i] = 1;
+	  }
+	}
+  }
+}

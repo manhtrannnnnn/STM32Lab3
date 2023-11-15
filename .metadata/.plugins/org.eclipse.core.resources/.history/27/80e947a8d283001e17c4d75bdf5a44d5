@@ -1,0 +1,99 @@
+
+#include "fsm_display.h"
+
+#include "fsm_display.h"
+
+/* Define -----*/
+//State of 7SEG display fsm
+#define INIT 0
+#define EN0 1
+#define EN1 2
+#define EN2 3
+#define EN3 4
+//state for blink LED fsm
+#define LED_ON 1
+#define LED_OFF 2
+//Time
+#define scanning 250
+#define blink 500
+
+/* Init ------*/
+int statusEn = INIT;
+int statusLed = INIT;
+
+/* Function -----*/
+//Set restart 7SEG display
+void reset7Seg(void) {
+  statusEn = INIT;
+}
+//7SEG LED display
+void scanning7Seg(void) {
+  updateBufferSeg();
+  switch(statusEn) {
+  case INIT:
+    statusEn = EN0;
+    setTimer(scanning, enTimer);
+    break;
+  case EN0:
+    enOn(0);
+    display7SEG(segBuffer[0]);
+    if(isTimerEnd(enTimer)) {
+      statusEn = EN1;
+      setTimer(scanning, enTimer);
+    }
+    break;
+  case EN1:
+	enOn(1);
+    display7SEG(segBuffer[1]);
+	if(isTimerEnd(enTimer)) {
+	  statusEn = EN2;
+	  setTimer(scanning, enTimer);
+	}
+	break;
+  case EN2:
+	enOn(2);
+    display7SEG(segBuffer[2]);
+	if(isTimerEnd(enTimer)) {
+	  statusEn = EN3;
+	  setTimer(scanning, enTimer);
+	}
+	break;
+  case EN3:
+	enOn  (3);
+    display7SEG(segBuffer[3]);
+	if(isTimerEnd(enTimer)) {
+	  statusEn = EN0;
+	  setTimer(scanning, enTimer);
+	}
+	break;
+  default:
+	  break;
+  }
+
+}
+//Blinky LED have 'color'
+void blinkLed(int color) {
+  switch(statusLed) {
+  case INIT:
+    statusLed = LED_ON;
+    setTimer(blink, blinkTimer);
+    break;
+  case LED_ON:
+	ledRoad1(color);
+	ledRoad2(color);
+	if(isTimerEnd(blinkTimer)) {
+	  statusLed = LED_OFF;
+	  setTimer(blink, blinkTimer);
+	}
+	break;
+  case LED_OFF:
+	ledOff();
+	if(isTimerEnd(blinkTimer)) {
+	  statusLed = LED_ON;
+	  setTimer(blink, blinkTimer);
+	}
+	break;
+  default:
+	  break;
+  }
+}

@@ -1,0 +1,15 @@
+/*
+ * global.c
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+
+#include "global.h"
+
+int time_road1 = 0;
+int time_road2 = 0;
+int time_red = 5000;
+int time_yellow = 2000;
+int time_green = 3000;

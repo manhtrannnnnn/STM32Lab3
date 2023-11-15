@@ -1,0 +1,19 @@
+/*
+ * fsm_automatic.h
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+#include "software_timer.h"
+#include "global.h"
+#include "main.h"
+#include "display.h"
+#ifndef INC_FSM_AUTOMATIC_H_
+#define INC_FSM_AUTOMATIC_H_
+
+void fsm_auto_road1(void);
+void fsm_auto_road2(void);
+//Set state to INIT
+void setInit(void);
+
+#endif /* INC_FSM_AUTOMATIC_H_ */

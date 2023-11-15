@@ -1,0 +1,63 @@
+/*
+ * fsm_automatic.c
+ *
+ *  Created on: Nov 14, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "fsm_automatic.h"
+
+#define INIT 0
+#define AUTO_RED 1
+#define AUTO_YELLOW 2
+#define AUTO_GREEN 3
+
+#define CLOCK_TIME 1000
+
+
+int statusRoad1 = INIT;
+int statusRoad2 = INIT;
+
+void autoRoad1(){
+	if(isTimerEnd(clockTimer1) == 1){
+		timeRoad1--;
+		setTimer(CLOCK_TIME, clockTimer1);
+	}
+	switch(statusRoad1){
+		case INIT:
+			statusRoad1 = AUTO_RED;
+			timeRoad1 = timeRed;
+			setTimer(timeRed, road1Timer);
+			setTimer(CLOCK_TIME, clockTimer1);
+		case AUTO_RED:
+			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, RESET);
+			HAL_GPIO_WritePin(GREEN1_GPIO_Port, RED1_Pin, SET);
+			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, RED1_Pin, SET);
+			if(isTimerEnd(road1Timer) == 1){
+				statusRoad1 = AUTO_GREEN;
+				timeRoad1 = timeGreen;
+				setTimer(timeGreen, road1Timer);
+				setTimer(CLOCK_TIME, clockTimer1);
+			}
+		case AUTO_GREEN:
+			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
+			HAL_GPIO_WritePin(GREEN1_GPIO_Port, RED1_Pin, RESET);
+			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, RED1_Pin, SET);
+			if(isTimerEnd(road1Timer) == 1){
+				statusRoad1 = AUTO_YELLOW;
+				timeRoad1 = timeYellow;
+				setTimer(timeGreen, road1Timer);
+				setTimer(CLOCK_TIME, clockTimer1);
+			}
+		case AUTO_YELLOW:
+			HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, SET);
+			HAL_GPIO_WritePin(GREEN1_GPIO_Port, RED1_Pin, SET);
+			HAL_GPIO_WritePin(YELLOW1_GPIO_Port, RED1_Pin, RESET);
+			if(isTimerEnd(road1Timer) == 1){
+				statusRoad1 = AUTO_YELLOW;
+				timeRoad1 = timeYellow;
+				setTimer(timeYellow, road1Timer);
+				setTimer(CLOCK_TIME, clockTimer1);
+			}
+	}
+}

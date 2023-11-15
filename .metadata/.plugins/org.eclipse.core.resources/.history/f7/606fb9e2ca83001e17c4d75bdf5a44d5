@@ -1,0 +1,79 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 15, 2023
+ *      Author: ASUS TUF
+ */
+
+#include "fsm_manual.h"
+
+#define MODE1 1
+#define MODE2 2
+#define MODE3 3
+#define MODE4 4
+
+int statusManual = MODE1;
+
+void increaseTime(){
+	timeRoad2++;
+	if(timeRoad2 > 99) timeRoad2 = 0;
+}
+void fsm_manual_run(){
+	switch(statusManual){
+		case MODE1:
+			restart7Seg();
+			autoRoad1();
+			autoRoad2();
+			if(isButtonPressed(modeButton)){
+				statusManual = MODE2;
+			}
+			break;
+		case MODE2:
+			restart7Seg();
+			timeRoad1 = MODE2;
+			timeRoad2 = timeRed;
+			blinkLed(RED);
+			if(isButtonPressed(modeButton)){
+				statusManual = MODE3;
+			}
+			if(isButtonPressed(modifyButton)){
+				increaseTime();
+			}
+			if(isButtonPressed(setButton)){
+				timeRed = timeRoad2;
+			}
+			break;
+		case MODE3:
+			restart7Seg();
+			timeRoad1 = MODE3;
+			timeRoad2 = timeYellow;
+			blinkLed(YELLOW);
+			if(isButtonPressed(modeButton)){
+				statusManual = MODE4;
+			}
+			if(isButtonPressed(modifyButton)){
+				increaseTime();
+			}
+			if(isButtonPressed(setButton)){
+				timeYellow = timeRoad2;
+			}
+		case MODE4:
+			restart7Seg();
+			timeRoad1 = MODE4;
+			timeRoad2 = timeGreen;
+			blinkLed(GREEN);
+			if(isButtonPressed(modeButton)){
+				statusManual = MODE1;
+				setInit();
+			}
+			if(isButtonPressed(modifyButton)){
+				increaseTime();
+			}
+			if(isButtonPressed(setButton)){
+				timeGreen = timeRoad2;
+			}
+			break;
+		default:
+			break;
+	}
+}

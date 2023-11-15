@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;STM32 code/Core/Src/fsm_display&apos; to &apos;fsm_display.c&apos;" description="Rename resource &apos;fsm_display&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/fsm_display" name="fsm_display.c" stamp="1699984615740" updateReferences="true"/>
+</session>
